@@ -1,29 +1,39 @@
 {
-  "name": "research-site",
-  "version": "0.1.0",
-  "private": true,
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "Next.js placeholder app",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/print-url.js && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "next": "16.2.1",
-    "node-polyfill-webpack-plugin": "^4.1.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "unenv": "^1.10.0"
+    "@types/hast": "^3.0.4",
+    "mermaid": "^11.13.0",
+    "next": "^16.2.1",
+    "playwright": "^1.58.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rehype-mermaid": "^3.0.0",
+    "rehype-react": "^8.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.1",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "25.5.0",
+    "@types/react": "19.2.14",
+    "postcss": "^8.5.8",
+    "puppeteer": "^24.40.0",
+    "raw-loader": "^4.0.2",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5"
-  },
-  "type": "module"
+    "typescript": "6.0.2"
+  }
 }

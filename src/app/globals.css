@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Base typography settings */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium selection colors */
+::selection {
+  background-color: rgb(14 165 233 / 0.25);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgb(14 165 233 / 0.25);
+  color: inherit;
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(168 162 158 / 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(168 162 158 / 0.6);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(87 83 78 / 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(87 83 78 / 0.6);
+}
+
+/* ASCII diagram styling - disable ligatures and tight line-height */
+.ascii-diagram {
+  font-variant-ligatures: none;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0;
+  font-feature-settings: "liga" 0, "clig" 0;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+/* ==========================================
+   Mermaid Diagram Styling
+   ========================================== */
+
+/* Container styling */
+.mermaid-container {
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(214 211 209 / 0.5);
+}
+
+.dark .mermaid-container {
+  border-color: rgb(68 64 60 / 0.5);
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Node styling - rounded corners and consistent strokes */
+.mermaid-container .node rect,
+.mermaid-container .node polygon,
+.mermaid-container .node circle,
+.mermaid-container .node ellipse {
+  rx: 6px;
+  ry: 6px;
+  stroke-width: 1.5px;
+}
+
+/* Node labels - typography */
+.mermaid-container .nodeLabel {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.dark .mermaid-container .nodeLabel {
+  color: #fafaf9;
+}
+
+/* Edge/connection styling */
+.mermaid-container .edgePath path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+}
+
+.mermaid-container .edgePath path {
+  stroke: #a8a29e; /* stone-400 for light mode */
+}
+
+.dark .mermaid-container .edgePath path {
+  stroke: #78716c; /* stone-500 for dark mode */
+}
+
+/* Edge labels */
+.mermaid-container .edgeLabel {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.dark .mermaid-container .edgeLabel {
+  color: #a8a29e;
+}
+
+/* Arrow markers */
+.mermaid-container marker path {
+  fill: #a8a29e;
+}
+
+.dark .mermaid-container marker path {
+  fill: #78716c;
+}
+
+/* Subgraph hierarchy styling */
+.mermaid-container .cluster rect {
+  rx: 8px;
+  ry: 8px;
+  stroke-width: 1.5px;
+}
+
+/* First level subgraphs - solid borders */
+.mermaid-container .cluster rect {
+  fill: rgb(245 245 244 / 0.5); /* stone-100/50 */
+  stroke: #d6d3d1; /* stone-300 */
+}
+
+.dark .mermaid-container .cluster rect {
+  fill: rgb(28 25 23 / 0.5); /* stone-900/50 */
+  stroke: #44403c; /* stone-700 */
+}
+
+/* Nested subgraphs - dashed borders */
+.mermaid-container .cluster .cluster rect {
+  stroke-dasharray: 4 2;
+  fill: rgb(231 229 228 / 0.3); /* stone-200/30 */
+  stroke: #a8a29e; /* stone-400 */
+}
+
+.dark .mermaid-container .cluster .cluster rect {
+  fill: rgb(41 37 36 / 0.3); /* stone-800/30 */
+  stroke: #57534e; /* stone-600 */
+}
+
+/* Third level subgraphs - dotted borders */
+.mermaid-container .cluster .cluster .cluster rect {
+  stroke-dasharray: 2 2;
+  fill: rgb(214 211 209 / 0.2); /* stone-300/20 */
+  stroke: #78716c; /* stone-500 */
+}
+
+.dark .mermaid-container .cluster .cluster .cluster rect {
+  fill: rgb(68 64 60 / 0.2); /* stone-700/20 */
+  stroke: #78716c; /* stone-500 */
+}
+
+/* Subgraph labels */
+.mermaid-container .cluster-label .nodeLabel,
+.mermaid-container .cluster text {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* ==========================================
+   Custom Node Classes for Architecture Diagrams
+   ========================================== */
+
+/* Primary - Sky accent for main entry points */
+.mermaid-container .node.primary rect,
+.mermaid-container .node.primary polygon {
+  fill: #e0f2fe; /* sky-100 */
+  stroke: #0284c7; /* sky-600 */
+}
+
+.dark .mermaid-container .node.primary rect,
+.dark .mermaid-container .node.primary polygon {
+  fill: #0c4a6e; /* sky-900 */
+  stroke: #38bdf8; /* sky-400 */
+}
+
+/* Secondary - Stone for supporting services */
+.mermaid-container .node.secondary rect,
+.mermaid-container .node.secondary polygon {
+  fill: #e7e5e4; /* stone-200 */
+  stroke: #78716c; /* stone-500 */
+}
+
+.dark .mermaid-container .node.secondary rect,
+.dark .mermaid-container .node.secondary polygon {
+  fill: #292524; /* stone-800 */
+  stroke: #a8a29e; /* stone-400 */
+}
+
+/* Success - Green for active/healthy nodes */
+.mermaid-container .node.success rect,
+.mermaid-container .node.success polygon {
+  fill: #dcfce7; /* green-100 */
+  stroke: #16a34a; /* green-600 */
+}
+
+.dark .mermaid-container .node.success rect,
+.dark .mermaid-container .node.success polygon {
+  fill: #14532d; /* green-900 */
+  stroke: #4ade80; /* green-400 */
+}
+
+/* Warning - Amber for caution states */
+.mermaid-container .node.warning rect,
+.mermaid-container .node.warning polygon {
+  fill: #fef3c7; /* amber-100 */
+  stroke: #d97706; /* amber-600 */
+}
+
+.dark .mermaid-container .node.warning rect,
+.dark .mermaid-container .node.warning polygon {
+  fill: #78350f; /* amber-900 */
+  stroke: #fbbf24; /* amber-400 */
+}
+
+/* Error - Red for failure states */
+.mermaid-container .node.error rect,
+.mermaid-container .node.error polygon {
+  fill: #fee2e2; /* red-100 */
+  stroke: #dc2626; /* red-600 */
+}
+
+.dark .mermaid-container .node.error rect,
+.dark .mermaid-container .node.error polygon {
+  fill: #7f1d1d; /* red-900 */
+  stroke: #f87171; /* red-400 */
+}
+
+/* Storage - Indigo for databases */
+.mermaid-container .node.storage rect,
+.mermaid-container .node.storage polygon,
+.mermaid-container .node.storage path {
+  fill: #e0e7ff; /* indigo-100 */
+  stroke: #4f46e5; /* indigo-600 */
+}
+
+.dark .mermaid-container .node.storage rect,
+.dark .mermaid-container .node.storage polygon,
+.dark .mermaid-container .node.storage path {
+  fill: #312e81; /* indigo-900 */
+  stroke: #818cf8; /* indigo-400 */
+}
+
+/* External - Dashed border for external services */
+.mermaid-container .node.external rect,
+.mermaid-container .node.external polygon {
+  stroke-dasharray: 4 2;
+  fill: #faf5ff; /* purple-50 */
+  stroke: #9333ea; /* purple-600 */
+}
+
+.dark .mermaid-container .node.external rect,
+.dark .mermaid-container .node.external polygon {
+  fill: #3b0764; /* purple-950 */
+  stroke: #c084fc; /* purple-400 */
+}
