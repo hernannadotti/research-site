@@ -1,28 +1,7 @@
 import type { NextConfig } from 'next'
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
-import { env, nodeless } from 'unenv'
-import { resolve } from 'path'
-
-const { alias: turbopackAlias } = env(nodeless, {})
 
 const nextConfig: NextConfig = {
-  // Turbopack
-  turbopack: {
-    // Prevent Next from inferring the workspace root from another lockfile
-    // elsewhere on your machine.
-    root: resolve(__dirname),
-    resolveAlias: {
-      ...turbopackAlias,
-    },
-  },
-  // Webpack
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.plugins.push(new NodePolyfillPlugin())
-    }
-    return config
-  },
+  allowedDevOrigins: ['3000-b827b897-5768-4291-96bc-eeb2dcc5d339.proxy.daytona.works'],
 }
 
 export default nextConfig
-
